@@ -2,10 +2,11 @@ from pydantic import BaseModel
 from typing import List
 
 class Address(BaseModel):
+    id: int
     street: str
     zipcode: str
     city: str
-    estate: str
+    state: str
 
 class Product(BaseModel):
     id: int
@@ -24,6 +25,6 @@ class User(BaseModel):
     name: str
     email: str
     password: str
-    adresses: List[Address] = []
-    payment_method: int
+    addresses: List[Address] = []
+    payment_method: str
     shopping_cart: ShoppingCart

@@ -1,0 +1,328 @@
+# welcome page
+GET http://127.0.0.1:8000/ HTTP/1.1
+# welcome()
+
+#################################################
+# create_user("Durotan") - ERROR (invalid email)
+POST http://127.0.0.1:8000/user HTTP/1.1
+content-type: application/json
+
+{
+    "document": "0001",
+    "name": "Durotan of the Frost Wolf Clan",
+    "email": "durotanfrost.wolf",
+    "password": "durotan123",
+    "addresses": [],
+    "payment_method": "credit",
+    "shopping_cart":
+    {
+        "products": [],
+        "price_debit": 0,
+        "price_credit": 0,
+        "number_of_items": 0
+    }
+}
+
+################################################
+# create_user("Durotan") - ERROR (invalid password)
+POST http://127.0.0.1:8000/user HTTP/1.1
+content-type: application/json
+
+{
+    "document": "0001",
+    "name": "Durotan of the Frost Wolf Clan",
+    "email": "durotan@frost.wolf",
+    "password": "durotan",
+    "addresses": [],
+    "payment_method": "credit",
+    "shopping_cart":
+    {
+        "products": [],
+        "price_debit": 0,
+        "price_credit": 0,
+        "number_of_items": 0
+    }
+}
+
+################################################
+# create_user("Durotan") - OK
+POST http://127.0.0.1:8000/user HTTP/1.1
+content-type: application/json
+
+{
+    "document": "0001",
+    "name": "Durotan of the Frost Wolf Clan",
+    "email": "durotan@frost.wolf",
+    "password": "durotan123",
+    "addresses": [],
+    "payment_method": "credit",
+    "shopping_cart":
+    {
+        "products": [],
+        "price_debit": 0,
+        "price_credit": 0,
+        "number_of_items": 0
+    }
+}
+
+#################################################
+# create_user("Draka") - ERROR (document already exists)
+POST http://127.0.0.1:8000/user HTTP/1.1
+content-type: application/json
+
+{
+    "document": "0001",
+    "name": "Draka of the Frost Wolf Clan",
+    "email": "draka@frost.wolf",
+    "password": "draka123",
+    "addresses":
+    [
+        {
+            "id": 1,
+            "street": "Frost Wolf",
+            "zipcode": "123",
+            "city": "Nagrand",
+            "state": "Draenor"
+        }
+    ],
+    "payment_method": "debit",
+    "shopping_cart":
+    {
+        "products": [],
+        "price_debit": 0,
+        "price_credit": 0,
+        "number_of_items": 0
+    }
+}
+
+################################################
+# create_user("Draka") - OK
+POST http://127.0.0.1:8000/user HTTP/1.1
+content-type: application/json
+
+{
+    "document": "0002",
+    "name": "Draka of the Frost Wolf Clan",
+    "email": "draka@frost.wolf",
+    "password": "draka123",
+    "addresses":
+    [
+        {
+            "id": 1,
+            "street": "Frost Wolf",
+            "zipcode": "123",
+            "city": "Nagrand",
+            "state": "Draenor"
+        }
+    ],
+    "payment_method": "debit",
+    "shopping_cart":
+    {
+        "products": [],
+        "price_debit": 0,
+        "price_credit": 0,
+        "number_of_items": 0
+    }
+}
+
+################################################
+# create_user("Thrall") - OK
+POST http://127.0.0.1:8000/user HTTP/1.1
+content-type: application/json
+
+{
+    "document": "0003",
+    "name": "Thrall Go'el",
+    "email": "thrall@horde.com",
+    "password": "thrall123",
+    "addresses":
+    [
+        {
+            "id": 1,
+            "street": "Frost Wolf",
+            "zipcode": "123",
+            "city": "Nagrand",
+            "state": "Draenor"
+        },
+        {
+            "id": 2,
+            "street": "Frost Wolf",
+            "zipcode": "234",
+            "city": "Frostfire Ridge",
+            "state": "Draenor"
+        },
+        {
+            "id": 3,
+            "street": "Orgrimmar",
+            "zipcode": "345",
+            "city": "Durotar",
+            "state": "Kalimdor"
+        }
+    ],
+    "payment_method": "debit",
+    "shopping_cart": {
+        "products": [],
+        "price_debit": 0,
+        "price_credit": 0,
+        "number_of_items": 0
+    }
+}
+
+################################################
+# create_user("Jaina") - OK
+POST http://127.0.0.1:8000/user HTTP/1.1
+content-type: application/json
+
+{
+    "document": "0004",
+    "name": "Jaina Proudmoore",
+    "email": "jaina@produmore.com",
+    "password": "jaina123",
+    "addresses":
+    [
+        {
+            "id": 1,
+            "street": "Theramore Isle",
+            "zipcode": "456",
+            "city": "Dustwallow Marsh",
+            "state": "Kalimdor"
+        },
+        {
+            "id": 2,
+            "street": "Dazaralor",
+            "zipcode": "567",
+            "city": "Zuldazar",
+            "state": "Zandalar"
+        }
+    ],
+    "payment_method": "credit",
+    "shopping_cart": {
+        "products": [],
+        "price_debit": 0,
+        "price_credit": 0,
+        "number_of_items": 0
+    }
+}
+
+################################################
+# create_user("Garrosh") - OK
+POST http://127.0.0.1:8000/user HTTP/1.1
+content-type: application/json
+
+
+{
+    "document": "0005",
+    "name": "Garrosh Hellscream",
+    "email": "garrosh@hellscream.com",
+    "password": "garrosh123",
+    "addresses": [],
+    "payment_method": "credit",
+    "shopping_cart":
+    {
+        "products": [],
+        "price_debit": 0,
+        "price_credit": 0,
+        "number_of_items": 0
+    }
+}
+
+################################################
+# create_user("Grommash") - OK
+POST http://127.0.0.1:8000/user HTTP/1.1
+content-type: application/json
+
+{
+    "document": "0006",
+    "name": "Grommash Hellscream",
+    "email": "grommash@hellscream.com",
+    "password": "grommash123",
+    "addresses":
+    [
+        {
+            "id": 1,
+            "street": "Warsong Clan",
+            "zipcode": "678",
+            "city": "Ashenvale",
+            "state": "Kalimdor"
+        }
+    ],
+    "payment_method": "debit",
+    "shopping_cart": {
+        "products": [],
+        "price_debit": 0,
+        "price_credit": 0,
+        "number_of_items": 0
+    }
+}
+
+################################################
+# return_user_by_document("0010") - ERROR (document not FOUND)
+GET http://127.0.0.1:8000/user/document/0010 HTTP/1.1
+content-type: application/json
+
+################################################
+# return_user_by_document("0002") - OK
+GET http://127.0.0.1:8000/user/document/0002 HTTP/1.1
+content-type: application/json
+
+################################################
+
+
+
+
+#------------------------------------- ERRO NESTA
+# return_user_by_name("xxxx") - ERROR (name not found)
+GET http://127.0.0.1:8000/user/name/xxxx HTTP/1.1
+content-type: application/json
+
+################################################
+# return_user_by_name("Jaina") - OK
+GET http://127.0.0.1:8000/user/name/Jaina HTTP/1.1
+content-type: application/json
+
+################################################
+#------------------------------------- ERRO NESTA
+
+
+
+
+# delete_user("0010") - ERROR (document not FOUND)
+DELETE http://127.0.0.1:8000/user/0010 HTTP/1.1
+content-type: application/json
+
+################################################
+# delete_user("0002") - OK
+DELETE http://127.0.0.1:8000/user/0002 HTTP/1.1
+content-type: application/json
+
+################################################
+
+
+# create_address("0001")
+POST http://127.0.0.1:8000/user/0001/address HTTP/1.1
+content-type: application/json
+
+{
+    "id": 1,
+    "street": "Frost Wolf",
+    "zipcode": "123",
+    "city": "Nagrand",
+    "state": "Draenor"
+}
+
+################################################
+
+# {
+#     "id": 2,
+#     "street": "Frost Wolf",
+#     "zipcode": "234",
+#     "city": "Frostfire Ridge",
+#     "state": "Draenor"
+# },
+# {
+#     "id": 3,
+#     "street": "Orgrimmar",
+#     "zipcode": "345",
+#     "city": "Durotar",
+#     "state": "Kalimdor"
+# }
