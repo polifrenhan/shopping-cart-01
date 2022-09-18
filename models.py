@@ -9,7 +9,7 @@ class Address(BaseModel):
     state: str
 
 class Product(BaseModel):
-    id: int
+    id: str
     name: str
     description: str
     price: float

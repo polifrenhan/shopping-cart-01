@@ -1,9 +1,11 @@
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # welcome page
 GET http://127.0.0.1:8000/ HTTP/1.1
 # welcome()
 
 #################################################
-# create_user("Durotan") - ERROR (invalid email)
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# create_user("Durotan") - Invalid e-mail.
 POST http://127.0.0.1:8000/user HTTP/1.1
 content-type: application/json
 
@@ -24,7 +26,8 @@ content-type: application/json
 }
 
 ################################################
-# create_user("Durotan") - ERROR (invalid password)
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# create_user("Durotan") - Invalid password.
 POST http://127.0.0.1:8000/user HTTP/1.1
 content-type: application/json
 
@@ -45,6 +48,7 @@ content-type: application/json
 }
 
 ################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # create_user("Durotan") - OK
 POST http://127.0.0.1:8000/user HTTP/1.1
 content-type: application/json
@@ -66,7 +70,8 @@ content-type: application/json
 }
 
 #################################################
-# create_user("Draka") - ERROR (document already exists)
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# create_user("Draka") - User already registered.
 POST http://127.0.0.1:8000/user HTTP/1.1
 content-type: application/json
 
@@ -96,6 +101,7 @@ content-type: application/json
 }
 
 ################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # create_user("Draka") - OK
 POST http://127.0.0.1:8000/user HTTP/1.1
 content-type: application/json
@@ -126,6 +132,7 @@ content-type: application/json
 }
 
 ################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # create_user("Thrall") - OK
 POST http://127.0.0.1:8000/user HTTP/1.1
 content-type: application/json
@@ -169,6 +176,7 @@ content-type: application/json
 }
 
 ################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # create_user("Jaina") - OK
 POST http://127.0.0.1:8000/user HTTP/1.1
 content-type: application/json
@@ -205,6 +213,7 @@ content-type: application/json
 }
 
 ################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # create_user("Garrosh") - OK
 POST http://127.0.0.1:8000/user HTTP/1.1
 content-type: application/json
@@ -227,6 +236,7 @@ content-type: application/json
 }
 
 ################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # create_user("Grommash") - OK
 POST http://127.0.0.1:8000/user HTTP/1.1
 content-type: application/json
@@ -256,49 +266,70 @@ content-type: application/json
 }
 
 ################################################
-# return_user_by_document("0010") - ERROR (document not FOUND)
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# return_user_by_document("0010") - User not found.
 GET http://127.0.0.1:8000/user/document/0010 HTTP/1.1
 content-type: application/json
 
 ################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # return_user_by_document("0002") - OK
 GET http://127.0.0.1:8000/user/document/0002 HTTP/1.1
 content-type: application/json
 
 ################################################
-
-
-
-
-#------------------------------------- ERRO NESTA
-# return_user_by_name("xxxx") - ERROR (name not found)
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# return_user_by_name("xxxx") - User not found.
 GET http://127.0.0.1:8000/user/name/xxxx HTTP/1.1
 content-type: application/json
 
 ################################################
-# return_user_by_name("Jaina") - OK
-GET http://127.0.0.1:8000/user/name/Jaina HTTP/1.1
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# return_user_by_name("Hell") - OK
+GET http://127.0.0.1:8000/user/name/Hell HTTP/1.1
 content-type: application/json
 
 ################################################
-#------------------------------------- ERRO NESTA
-
-
-
-
-# delete_user("0010") - ERROR (document not FOUND)
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# delete_user("0010") - User not found.
 DELETE http://127.0.0.1:8000/user/0010 HTTP/1.1
 content-type: application/json
 
 ################################################
-# delete_user("0002") - OK
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# delete_user("0002") - User 0002 excluded.
 DELETE http://127.0.0.1:8000/user/0002 HTTP/1.1
 content-type: application/json
 
 ################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# create_address(user 0010) - User not found.
+POST http://127.0.0.1:8000/user/0010/address HTTP/1.1
+content-type: application/json
 
+{
+    "id": 1,
+    "street": "Frost Wolf",
+    "zipcode": "123",
+    "city": "Nagrand",
+    "state": "Draenor"
+}
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# create_address(user 0003, address id 1) - Address already exists.
+POST http://127.0.0.1:8000/user/0003/address HTTP/1.1
+content-type: application/json
 
-# create_address("0001")
+{
+    "id": 1,
+    "street": "Frost Wolf",
+    "zipcode": "123",
+    "city": "Nagrand",
+    "state": "Draenor"
+}
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# create_address(user 0001, address id 1) - OK
 POST http://127.0.0.1:8000/user/0001/address HTTP/1.1
 content-type: application/json
 
@@ -311,18 +342,266 @@ content-type: application/json
 }
 
 ################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# create_address(user 0001, address id 2) - OK
+POST http://127.0.0.1:8000/user/0001/address HTTP/1.1
+content-type: application/json
 
-# {
-#     "id": 2,
-#     "street": "Frost Wolf",
-#     "zipcode": "234",
-#     "city": "Frostfire Ridge",
-#     "state": "Draenor"
-# },
-# {
-#     "id": 3,
-#     "street": "Orgrimmar",
-#     "zipcode": "345",
-#     "city": "Durotar",
-#     "state": "Kalimdor"
-# }
+{
+    "id": 2,
+    "street": "Frost Wolf",
+    "zipcode": "234",
+    "city": "Frostfire Ridge",
+    "state": "Draenor"
+}
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# create_address(user 0001, address id 3) - OK
+POST http://127.0.0.1:8000/user/0001/address HTTP/1.1
+content-type: application/json
+
+{
+    "id": 3,
+    "street": "Orgrimmar",
+    "zipcode": "345",
+    "city": "Durotar",
+    "state": "Kalimdor"
+}
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# return_user_addresses("0010") - User not found.
+GET http://127.0.0.1:8000/user/0010/address HTTP/1.1
+content-type: application/json
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# return_user_addresses("0003") - OK
+GET http://127.0.0.1:8000/user/0003/address HTTP/1.1
+content-type: application/json
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# return_user_addresses_by_id(user 0010, id 2) - User not found.
+GET http://127.0.0.1:8000/user/0010/address/2 HTTP/1.1
+content-type: application/json
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# return_user_addresses_by_id(user 0003, id 6) - Address ID not found.
+GET http://127.0.0.1:8000/user/0003/address/6 HTTP/1.1
+content-type: application/json
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# return_user_addresses_by_id(user 0003, id 2) - OK
+GET http://127.0.0.1:8000/user/0003/address/2 HTTP/1.1
+content-type: application/json
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# delete_address_by_id(user 0010, id 2) - User not found.
+DELETE http://127.0.0.1:8000/user/0010/address/2 HTTP/1.1
+content-type: application/json
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# delete_address_by_id(user 0003, id 10) - Address ID not found.
+DELETE http://127.0.0.1:8000/user/0003/address/10 HTTP/1.1
+content-type: application/json
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# delete_address_by_id(user 0003, id 2) - OK
+DELETE http://127.0.0.1:8000/user/0003/address/3 HTTP/1.1
+content-type: application/json
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# delete_addresses("0003") - User not found.
+DELETE http://127.0.0.1:8000/user/0010/address HTTP/1.1
+content-type: application/json
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# delete_addresses("0003") - OK
+DELETE http://127.0.0.1:8000/user/0003/address HTTP/1.1
+content-type: application/json
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# create_product("Glaives") - OK
+POST http://127.0.0.1:8000/product HTTP/1.1
+content-type: application/json
+
+{
+    "id": "0001",
+    "name": "Warglaives of Azzinoth",
+    "description": "A legendary weapon wielded by Illidan Stormrage himself.  Warglaive of Azzinoth is the main hand component of the The Twin Blades of Azzinoth set.",
+    "price": 10000.00
+}
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# create_product("Glaives") - Product already registered.
+POST http://127.0.0.1:8000/product HTTP/1.1
+content-type: application/json
+
+{
+    "id": "0001",
+    "name": "Warglaives of Azzinoth",
+    "description": "A legendary weapon wielded by Illidan Stormrage himself.  Warglaive of Azzinoth is the main hand component of the The Twin Blades of Azzinoth set.",
+    "price": 10000.00
+}
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# create_product("Tusks") - OK
+POST http://127.0.0.1:8000/product HTTP/1.1
+content-type: application/json
+
+{
+    "id": "0002",
+    "name": "Tusks of Mannoroth",
+    "description": "The Tusks of Mannoroth were the tusks of the Pit Lord Mannoroth. It was once a memorial to Grom's sacrifice, now it is a shoulder piece.",
+    "price": 1000000.00
+}
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# create_product("Gorehowl") - OK
+POST http://127.0.0.1:8000/product HTTP/1.1
+content-type: application/json
+
+{
+    "id": "0003",
+    "name": "Gorehowl",
+    "description": "Gorehowl is the legendary two-handed axe of the Hellscream family of orcs. The weapon was famously wielded by Grommash Hellscream, chieftain of the Warsong clan, and was later also held by his son Garrosh, Warchief of the Horde, until he discarded it in favor of an Old God replica.",
+    "price": 9500.00
+}
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# create_product("Harness") - OK
+POST http://127.0.0.1:8000/product HTTP/1.1
+content-type: application/json
+
+{
+    "id": "0004",
+    "name": "Durotan's Battle Harness",
+    "description": "This is a legacy chest piece worn by Frostwolf chieftans for eleven generations.",
+    "price": 5000.00
+}
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# create_product("Tidestorm") - OK
+POST http://127.0.0.1:8000/product HTTP/1.1
+content-type: application/json
+
+{
+    "id": "0005",
+    "name": "Glacial Tidestorm",
+    "description": "An elemental created by Jaina. Though she commands a variety of magical powers, Jaina has always been most proficient at summoning powerful elementals of water and ice.",
+    "price": 500.00
+}
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# create_product("Frostmourne") - OK
+POST http://127.0.0.1:8000/product HTTP/1.1
+content-type: application/json
+
+{
+    "id": "0006",
+    "name": "Frostmourne",
+    "description": "The wielder of Frostmourne will become the new Lich King.",
+    "price": 1500.00
+}
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# create_product("Fishing Hat") - OK
+POST http://127.0.0.1:8000/product HTTP/1.1
+content-type: application/json
+
+{
+    "id": "0007",
+    "name": "Lucky Fishing Hat",
+    "description": "Increased Fishing +5.",
+    "price": 50.00
+}
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# create_product("Healing Potion") - OK
+POST http://127.0.0.1:8000/product HTTP/1.1
+content-type: application/json
+
+{
+    "id": "0008",
+    "name": "Lucky Healing Potion",
+    "description": "Restores 25% of your maximum health.",
+    "price": 10.00
+}
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# create_product("Bag") - OK
+POST http://127.0.0.1:8000/product HTTP/1.1
+content-type: application/json
+
+{
+    "id": "0009",
+    "name": "Netherweave Bag",
+    "description": "16 Slot Bag.",
+    "price": 20.00
+}
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# create_product("Food") - OK
+POST http://127.0.0.1:8000/product HTTP/1.1
+content-type: application/json
+
+{
+    "id": "0010",
+    "name": "Conjured Cinnamon Roll",
+    "description": "Restores your health over 10 sec. Must remain seated while eating.",
+    "price": 0.01
+}
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# create_product("Soap") - OK
+POST http://127.0.0.1:8000/product HTTP/1.1
+content-type: application/json
+
+{
+    "id": "0011",
+    "name": "Soap on a Rope",
+    "description": "Adventuring is no excuse for being filthy. Now you can carry your soap wherever you go!",
+    "price": 1.00
+}
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# create_product("Hammer Pick") - OK
+POST http://127.0.0.1:8000/product HTTP/1.1
+content-type: application/json
+
+{
+    "id": "0012",
+    "name": "Hammer Pick",
+    "description": "Used as a mining pick or blacksmith hammer.",
+    "price": 100.00
+}
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# return_return_product_by_id("0020") - Product not found.
+GET http://127.0.0.1:8000/product/id/0020 HTTP/1.1
+content-type: application/json
+
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# return_return_product_by_id("0012") - OK
+GET http://127.0.0.1:8000/product/id/0012 HTTP/1.1
+content-type: application/json
+
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# delete_product("0020") - Product not found.
+DELETE http://127.0.0.1:8000/product/0020 HTTP/1.1
+content-type: application/json
+
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# delete_product("0012") - Product 0012 excluded.
+DELETE http://127.0.0.1:8000/product/0012 HTTP/1.1
+content-type: application/json
+
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# # add_product_to_cart(user 0001 product 0012)
+# POST http://127.0.0.1:8000/user/0001/cart/product/0012 HTTP/1.1
+# content-type: application/json
+
+# ################################################
+# #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

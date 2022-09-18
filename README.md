@@ -12,12 +12,15 @@ Então, aqui estamos criar um "carrinho de compras" de um e-commerce utilizando 
 
 - Cadastrar endereço(s) do usuário;
 - Consultar endereços do usuário pelo código identificador do usuário;
-- Remover endereços do usuário pelo código identificador do usuário e do endereço;
+- Consultar endereços do usuário pelo código identificador do usuário e id do endereço;
+- Remover endereço do usuário pelos códigos identificadores do usuário e do endereço;
+- Remover todos os endereços de um usuário;
 
 - Cadastrar produtos com nome, descrição, preço e um código identificador único;
+- Consultar produtos pelo código identificador;
 - Remover produtos pelo código identificador;
 
-- Adicionar produtos ao carrinho de compras;
-- Remover produtos do carrinho de compras;
-- Remover todos os itens do carrinho de compras;
-- Calcular os valores totais (a vista e a prazo) do carrinho.
+- Adicionar produtos ao carrinho de compras; (falta implementar)
+- Remover produtos do carrinho de compras; (falta implementar)
+- Remover todos os itens do carrinho de compras; (falta implementar)
+- Calcular os valores totais (a vista e a prazo) do carrinho. (falta implementar)
