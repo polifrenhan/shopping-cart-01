@@ -599,9 +599,75 @@ content-type: application/json
 
 ################################################
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# # add_product_to_cart(user 0001 product 0012)
-# POST http://127.0.0.1:8000/user/0001/cart/product/0012 HTTP/1.1
-# content-type: application/json
+# add_product_to_cart(user 0010 product 0011) - User not found.
+POST http://127.0.0.1:8000/user/0010/cart/product/0011 HTTP/1.1
+content-type: application/json
 
-# ################################################
-# #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# add_product_to_cart(user 0001 product 0020) - Product not found.
+POST http://127.0.0.1:8000/user/0001/cart/product/0020 HTTP/1.1
+content-type: application/json
+
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# add_product_to_cart(user 0004 product 0004) - OK
+POST http://127.0.0.1:8000/user/0004/cart/product/0004 HTTP/1.1
+content-type: application/json
+
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# add_product_to_cart(user 0005 product 0004) - OK
+POST http://127.0.0.1:8000/user/0005/cart/product/0004 HTTP/1.1
+content-type: application/json
+
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# add_product_to_cart(user 0005 product 0005) - OK
+POST http://127.0.0.1:8000/user/0005/cart/product/0005 HTTP/1.1
+content-type: application/json
+
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# add_product_to_cart(user 0006 product 0004) - OK
+POST http://127.0.0.1:8000/user/0006/cart/product/0004 HTTP/1.1
+content-type: application/json
+
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# add_product_to_cart(user 0006 product 0005) - OK
+POST http://127.0.0.1:8000/user/0006/cart/product/0005 HTTP/1.1
+content-type: application/json
+
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# add_product_to_cart(user 0006 product 0006) - OK
+POST http://127.0.0.1:8000/user/0006/cart/product/0006 HTTP/1.1
+content-type: application/json
+
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# add_product_to_cart(user 0006 product 0006) - OK
+POST http://127.0.0.1:8000/user/0006/cart/product/0006 HTTP/1.1
+content-type: application/json
+
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# remove_product_from_cart(user 0010 search 0006) - User not found.
+DELETE http://127.0.0.1:8000/user/0010/cart/product/0006 HTTP/1.1
+content-type: application/json
+
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# remove_product_from_cart(user 0006 search 0020) - Product not found.
+DELETE http://127.0.0.1:8000/user/0006/cart/product/0020 HTTP/1.1
+content-type: application/json
+
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# remove_product_from_cart(user 0006 search 0006) - All products 0006 were excluded from cart.
+DELETE http://127.0.0.1:8000/user/0006/cart/product/0006 HTTP/1.1
+content-type: application/json
+
+################################################
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

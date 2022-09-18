@@ -8,7 +8,6 @@ app = FastAPI()
 
 user_dict = {}
 product_dict = {}
-cart_dict = {}
 
 @app.get("/")
 async def welcome():
@@ -135,8 +134,7 @@ async def delete_product(id: str):
     return "Product not found."
 # (lembrar de desvincular o produto dos carrinhos do usuário)
 
-# FUNÇÃO COM ERRO -----------------------
-@app.post("user/{document}/cart/product/{id_product}")
+@app.post("/user/{document}/cart/product/{id_product}")
 async def add_product_to_cart(document: str, id_product: str):
     if document not in user_dict:
         return "User not found."
@@ -148,5 +146,20 @@ async def add_product_to_cart(document: str, id_product: str):
     product = product_dict[id_product]
 
     user.shopping_cart.products.append(product)
-    return user.shopping_cart
-# FUNÇÃO COM ERRO -----------------------
+    return user.shopping_cart.products
+
+@app.delete("/user/{document}/cart/product/{search}")
+async def remove_product_from_cart(document: str, search: str):
+    if document not in user_dict:
+        return "User not found."
+
+    if search not in product_dict:
+        return "Product not found."
+
+    user = user_dict[document]
+
+    for cart_item in user.shopping_cart.products:
+        if cart_item.id == search:
+            user.shopping_cart.products.remove(cart_item)
+
+    return user.shopping_cart.products
