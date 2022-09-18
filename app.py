@@ -125,6 +125,7 @@ async def return_product_by_id(id: str):
 
     return "Product not found."
 
+# Função incompleta
 @app.delete("/product/{id}")
 async def delete_product(id: str):
     if id in product_dict:
@@ -132,7 +133,7 @@ async def delete_product(id: str):
         return f"Product {id} excluded."
 
     return "Product not found."
-# (lembrar de desvincular o produto dos carrinhos do usuário)
+# Função incompleta
 
 @app.post("/user/{document}/cart/product/{id_product}")
 async def add_product_to_cart(document: str, id_product: str):
@@ -146,8 +147,13 @@ async def add_product_to_cart(document: str, id_product: str):
     product = product_dict[id_product]
 
     user.shopping_cart.products.append(product)
+    user.shopping_cart.price_credit += product.price
+    user.shopping_cart.price_debit = (user.shopping_cart.price_credit)*0.9
+    user.shopping_cart.number_of_items += 1
+
     return user.shopping_cart.products
 
+# Função incompleta
 @app.delete("/user/{document}/cart/product/{search}")
 async def remove_product_from_cart(document: str, search: str):
     if document not in user_dict:
@@ -161,5 +167,20 @@ async def remove_product_from_cart(document: str, search: str):
     for cart_item in user.shopping_cart.products:
         if cart_item.id == search:
             user.shopping_cart.products.remove(cart_item)
+            # adicionar atualização das variaveis price_debit, price_credit e number_of_items
 
     return user.shopping_cart.products
+# Função incompleta
+
+@app.get("/user/{document}/cart")
+async def cart_total(document: str):
+    if document not in user_dict:
+        return "User not found."
+
+    user = user_dict[document]
+    credit = user.shopping_cart.price_credit
+    debit = user.shopping_cart.price_debit
+    items = user.shopping_cart.number_of_items
+     
+    msg = f"Your cart has {items} item(s). The total cost of the products is {credit}. Pay with credit card or get 10% discount and pay only {debit} on debit."
+    return msg

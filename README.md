@@ -22,11 +22,10 @@ Eu estou criando "carrinho de compras" de e-commerce utilizando FastAPI. Estou u
 
 - Cadastrar produtos com nome, descrição, preço e um código identificador único;
 - Consultar produtos pelo código identificador;
-- Remover produtos pelo código identificador;
+- Remover produtos pelo código identificador; **(função incompleta, falta verificar a existencia do item excluido em algum carrinho)**
 
 
 - Adicionar produtos ao carrinho de compras;
-- Remover todos os produtos de mesmo código do carrinho de compras pelo codigo identificador do produto; (falta implementar)
-- Remover todos os produtos do carrinho de compras; (falta implementar)
-- Remover todos os itens do carrinho de compras; (falta implementar)
-- Calcular os valores totais (a vista e a prazo) do carrinho. (falta implementar)
+- Remover todos os produtos de mesmo código do carrinho de compras pelo codigo identificador do produto; **(falta imcompleta)**
+- Remover todos os itens do carrinho de compras;
+- Calcular os valores totais (a vista e a prazo) do carrinho.
